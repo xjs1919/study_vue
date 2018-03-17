@@ -138,4 +138,20 @@ Vue.axios.interceptors.response.use((response)=> {
 </template>
 ```
 
-
+## 5.使用Bus传参
+```js
+//定义Bus.js
+import Vue from 'vue'
+let bus  = new Vue();
+export default bus
+//在from页面
+import  Bus from '../util/bus.js'
+Bus.$emit(config.BUS_KEY_XXX, params);
+//在to页面
+import  Bus from '../util/bus.js'
+mounted(){
+    Bus.$on(config.BUS_KEY_XXX, (params)=>{
+    });
+},
+//注意：这种方式必须得有页面缓存才好用，否则，会重新mount，就收不到事件了！
+```
