@@ -114,5 +114,28 @@ Vue.axios.interceptors.response.use((response)=> {
 >  2. 访问路径并不是叠加，例如/my而不是/front/my
 >  3. FrontMain这个模块中，需要有<router-view v-if="$route.meta.keepAlive"></router-view>
 >  4. 可以在router上添加meta来动态控制是否启用页面缓存
+```html
+<!--页面配置-->
+<template>
+  <div>
+    <div id="router"><router-view v-if="$route.meta.keepAlive"></router-view></div>
+    <tabbar>
+
+        <tabbar-item selected  link="/qr_upload">
+          <span slot="label">扫码上传</span>
+        </tabbar-item>
+
+        <tabbar-item link="/img_upload">
+          <span slot="label">图片上传</span>
+        </tabbar-item>
+
+        <tabbar-item link="/my">
+          <span slot="label">个人中心</span>
+        </tabbar-item>
+
+    </tabbar>
+  </div>
+</template>
+```
 
 
