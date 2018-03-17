@@ -157,3 +157,16 @@ mounted(){
 },
 ```
 **注意：这种方式必须from页面得有keep-alive页面缓存才好用，否则，会重新mount，就收不到事件了！**
+
+## 6.设置资源文件的访问路径
+```js
+//config/index.js
+module.exports = {
+  dev: {
+    assetsPublicPath: '/',
+  },
+  build: {
+    assetsPublicPath: '/myapp/', #可以给资源文件的访问url路径加上context
+  }
+}
+``
