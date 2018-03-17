@@ -20,6 +20,7 @@ export default {
 引入的时候：
 ```js
 import  util from '../util/util.js'
+var baseUrl = config.getApiBaseUrl();
 ```
 ## 2. vue-router传参
 ```js
