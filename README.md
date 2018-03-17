@@ -74,3 +74,45 @@ Vue.axios.interceptors.response.use((response)=> {
   return Promise.reject(error);
 });
 ```
+
+## 4.多tab页面，vue-router配置
+```js
+{
+    path: '/front',
+    component: FrontMain,
+    redirect:'/qr_upload',
+    children: [
+      {
+        path: '/qr_upload',
+        name: 'qr_upload',
+        component:FrontQrUpload,
+        meta: {
+          keepAlive: true
+        }
+      },
+      {
+        path: '/img_upload',
+        name: 'img_upload',
+        component:FrontImgUpload,
+        meta: {
+          keepAlive: true
+        }
+      },
+      {
+        path: '/my',
+        name: 'my',
+        component:FrontMy,
+        meta: {
+          keepAlive: true
+        }
+      }
+    ]
+  },
+```
+>  注意：
+>  1. redirect:'/qr_upload'设置默认的tab页面,访问/front实际上就是访问/qr_upload
+>  2. 访问路径并不是叠加，例如/my而不是/front/my
+>  3. FrontMain这个模块中，需要有<router-view v-if="$route.meta.keepAlive"></router-view>
+>  4. 可以在router上添加meta来动态控制是否启用页面缓存
+
+
