@@ -32,11 +32,11 @@ this.$router.push({
 mounted(){
     var params = this.$route.params;
 }
-//如果to页面存在keep-alive页面缓存，mounted不会调用，则：
+//如果to页面存在keep-alive页面缓存，mounted不会调用，则在to页面：
 activated(){
     var params = this.$route.params;//从明细返回的
 }
-//如果不想使用to页面的缓存
+//如果不想使用to页面的缓存，在to页面：
 beforeRouteLeave(to, from, next){
     this.$destroy();
     next();
@@ -46,6 +46,7 @@ beforeRouteLeave(to, from, next){
 
 ## 3.axios拦截请求与响应
 ```js
+//在main.js中就可以
 //设置baseUrl
 Vue.axios.defaults.baseURL = config.getApiBaseUrl();
 Vue.axios.interceptors.request.use((config)=>{
@@ -153,5 +154,5 @@ mounted(){
     Bus.$on(config.BUS_KEY_XXX, (params)=>{
     });
 },
-//注意：这种方式必须得有页面缓存才好用，否则，会重新mount，就收不到事件了！
 ```
+**注意：这种方式必须得有keep-alive页面缓存才好用，否则，会重新mount，就收不到事件了！**
