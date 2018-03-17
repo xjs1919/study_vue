@@ -43,7 +43,7 @@ beforeRouteLeave(to, from, next){
     next();
 }
 ```
-> 注意：from页面是**router**，to页面是**route**，少了一个**r**。
+**注意：from页面是router，to页面是route，少了一个r。**
 
 ## 3.axios拦截请求与响应
 ```js
