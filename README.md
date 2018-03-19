@@ -120,7 +120,12 @@ Vue.axios.interceptors.response.use((response)=> {
 <!--页面配置-->
 <template>
   <div>
-    <div id="router"><router-view v-if="$route.meta.keepAlive"></router-view></div>
+    <div id="router">
+      <keep-alive>
+        <router-view v-if="$route.meta.keepAlive"></router-view>
+      </keep-alive>
+      <router-view v-if="!$route.meta.keepAlive"></router-view>
+    </div>
     <tabbar>
 
         <tabbar-item selected  link="/qr_upload">
