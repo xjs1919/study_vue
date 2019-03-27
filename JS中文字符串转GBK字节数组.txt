@@ -42,11 +42,6 @@
 			return two;
 		}
 	}
-	var str = "1ÖĞ2¹ú12";
+	var str = "1ä¸­2å›½12";
 	console.info(toGbkBytes(str));
 </script>
---------------------- 
-×÷Õß£ºÈôÓã1919 
-À´Ô´£ºCSDN 
-Ô­ÎÄ£ºhttps://blog.csdn.net/goldenfish1919/article/details/88852398 
-°æÈ¨ÉùÃ÷£º±¾ÎÄÎª²©Ö÷Ô­´´ÎÄÕÂ£¬×ªÔØÇë¸½ÉÏ²©ÎÄÁ´½Ó£¡
