@@ -10,7 +10,7 @@
 				charArr.push(num);
 				i += 2;
 			} else {
-				charArr.push(ch);
+				charArr.push(ch.charCodeAt().toString(16));
 			}
 		}
 		for (var i = 0; i < charArr.length; i++) {
