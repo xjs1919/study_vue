@@ -1,47 +1,22 @@
 <script src="./gbk.js"></script>
-<script>
-	function toGbkBytes(str) {
-		var str = $URL.encode(str)
-		var charArr = new Array();
-		for (var i = 0; i < str.length; i++) {
-			var ch = str.charAt(i);
-			if (ch == '%') {
-				var num = str.charAt(i + 1) + str.charAt(i + 2);
-				charArr.push(num);
-				i += 2;
-			} else {
-				charArr.push(ch.charCodeAt().toString(16));
-			}
-		}
-		for (var i = 0; i < charArr.length; i++) {
-			var num = charArr[i];
-			charArr[i] = toSignedInt(num);
-		}
-		return charArr;
-	}
-	function toSignedInt(i) {
-		var two = parseInt(i, 16).toString(2);
-		var bitNum = i.length * 4;
-		if (two.length < bitNum) {
-			while (two.length < bitNum) {
-				two = "0" + two;
-			}
-		}
-		if (two.substring(0, 1) == "0") {
-			two = parseInt(two, 2);
-			return two;
-		} else {
-			let two_unsign = "";
-			two = parseInt(two, 2) - 1;
-			two = two.toString(2);
-			two_unsign = two.substring(1, bitNum);
-			two_unsign = two_unsign.replace(/0/g, "z");
-			two_unsign = two_unsign.replace(/1/g, "0");
-			two_unsign = two_unsign.replace(/z/g, "1");
-			two = parseInt(-two_unsign, 2);
-			return two;
+<script >
+function toGbkBytes(str){
+	var str = $URL.encode(str)
+	var byteArr = new Array();
+	for(var i=0; i<str.length;i++){
+		var ch = str.charAt(i);
+		if(ch == '%'){
+		     var num = str.charAt(i+1) + str.charAt(i+2);
+		     num = parseInt(num,16);
+		     num = num | (-1 << 8);
+		     byteArr.push(num);
+		     i+=2;
+		}else{
+			byteArr.push(ch.charCodeAt());
 		}
 	}
-	var str = "1中2国12";
-	console.info(toGbkBytes(str));
+	return byteArr;
+}
+var str = "中1";
+console.info(toGbkBytes(str));
 </script>
