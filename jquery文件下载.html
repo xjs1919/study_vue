@@ -1,0 +1,42 @@
+<script src="http://lib.sinaapp.com/js/jquery/2.2.4/jquery-2.2.4.min.js"></script>
+
+<button type="button" onclick="handleDownload()">download</button>
+
+<script>
+function handleDownload() {
+    $.ajax({
+        // 接口要允许跨域
+        url: "http://*******/export", 
+        type: 'post',
+	  data: JSON.stringify({}),
+        headers: {
+            'Content-Type':'application/json',
+            'Authorization': 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJjcmVhdGVUaW1lIjoiMjAyMi0wOC0zMSAxMzoxNToyMCIsInV1aWQiOiI0MmVjNTUwMS1iNjg1LTQ2ZmItOThjMy05NzAzMzFjMGI3NzEifQ.ytRPn-s1z5eUcmah1ppn07A8Yqhttlov_OqtsO56FD6b_vp3cJa-1IcNEb31dpU1ChrCV4W40xU9zlgNXqOZ-Q'
+        },
+        xhrFields:{
+        	responseType: "arraybuffer"
+        },
+        success: function(res) {
+            downloadFile(res, 'aa.xls');  
+        },
+        error: function(res) {
+            console.log('download fail')
+        }
+    });
+};
+
+function downloadFile(res, fileName) { 
+	   if (!res) {
+	        return
+	   };
+        var url = window.URL.createObjectURL(new Blob([res], { type: 'application/vnd.ms-excel;charset=utf-8' }));
+        var link = document.createElement('a')
+        link.style.display = 'none'
+        link.href = url
+        link.setAttribute('download', fileName)
+        document.body.appendChild(link)
+        link.click()
+        document.body.removeChild(link) 
+        window.URL.revokeObjectURL(url) 
+  }
+</script>
